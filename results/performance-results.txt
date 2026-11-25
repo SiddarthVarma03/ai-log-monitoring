@@ -1,0 +1,29 @@
+AI LOG MONITORING - KUBERNETES PERFORMANCE RESULTS
+
+Test Configuration
+------------------
+Requests: 500
+Concurrency: 20
+Traffic: Kubernetes Service -> FastAPI
+
+1-POD INTERNAL TEST
+-------------------
+Successful:      500
+Failed:          0
+Total Time:      2.45 seconds
+Throughput:      204.12 requests/sec
+Average Latency: 96.86 ms
+P50 Latency:     34.70 ms
+P95 Latency:     348.80 ms
+
+2-POD SCALING TEST
+------------------
+Successful:      500
+Failed:          0
+Total Time:      0.99 seconds
+Throughput:      505.18 requests/sec
+Average Latency: 38.45 ms
+P50 Latency:     23.40 ms
+P95 Latency:     74.63 ms
+
+Both tests completed with a 100% success rate and zero pod crashes.
