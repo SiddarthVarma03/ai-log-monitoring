@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ai-log-config
+  namespace: ai-log-monitoring
+
+data:
+  KAFKA_BOOTSTRAP_SERVERS: "kafka:29092"
+
+  POSTGRES_HOST: "postgres"
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: "logmonitoring"
+  POSTGRES_USER: "logadmin"
+
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"

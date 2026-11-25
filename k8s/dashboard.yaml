@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dashboard
+  namespace: ai-log-monitoring
+
+spec:
+  selector:
+    app: dashboard
+
+  ports:
+    - port: 8501
+      targetPort: 8501
+
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard
+  namespace: ai-log-monitoring
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: dashboard
+
+  template:
+    metadata:
+      labels:
+        app: dashboard
+
+    spec:
+      containers:
+        - name: dashboard
+          image: ai-log-dashboard:v1
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 8501
+
+          envFrom:
+            - configMapRef:
+                name: ai-log-config
+
+            - secretRef:
+                name: ai-log-secrets
+
+          readinessProbe:
+            httpGet:
+              path: /_stcore/health
+              port: 8501
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+          livenessProbe:
+            httpGet:
+              path: /_stcore/health
+              port: 8501
+            initialDelaySeconds: 15
+            periodSeconds: 10

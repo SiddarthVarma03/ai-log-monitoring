@@ -1,0 +1,21 @@
+# Secrets
+.env
+
+# Python
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# macOS
+.DS_Store
+
+# Runtime / backup data
+kafka-data/
+kafka-backup/
+postgres-backup/
+redis-backup/
+*.rdb
+
+# Logs
+*.log

@@ -1,0 +1,11 @@
+venv/
+.env
+.git/
+__pycache__/
+*.pyc
+.DS_Store
+
+kafka-data/
+kafka-backup/
+postgres-backup/
+redis-backup/

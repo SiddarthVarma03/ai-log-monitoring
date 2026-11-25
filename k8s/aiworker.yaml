@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aiworker
+  namespace: ai-log-monitoring
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: aiworker
+
+  template:
+    metadata:
+      labels:
+        app: aiworker
+
+    spec:
+      containers:
+        - name: aiworker
+          image: ai-log-aiworker:v1
+          imagePullPolicy: IfNotPresent
+
+          envFrom:
+            - configMapRef:
+                name: ai-log-config
+
+            - secretRef:
+                name: ai-log-secrets
